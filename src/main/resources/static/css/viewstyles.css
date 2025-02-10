@@ -42,7 +42,7 @@ h2 {
 
 .button {
     text-decoration: none;
-    background-color: #819FF7;
+    background-color: #d7d0e3;
     color: white;
     padding: 12px 25px;
     border-radius: 5px;
@@ -53,9 +53,9 @@ h2 {
 }
 
 .button:hover {
-    background-color: #819FF7;
+    background-color: #d7d0e3;
 }
 
 .button:active {
-    background-color: #819FF7;
+    background-color: #d7d0e3;
 }

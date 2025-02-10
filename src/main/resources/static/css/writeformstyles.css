@@ -46,12 +46,12 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-    border-color: #819FF7;
+    border-color: #d7d0e3;
     outline: none;
 }
 
 button {
-    background-color: #819FF7;
+    background-color: #d7d0e3;
     color: white;
     padding: 10px;
     border: none;
@@ -62,7 +62,7 @@ button {
 }
 
 button:hover {
-    background-color: #6a82d6;
+    background-color: #d7d0e3;
 }
 
 .back-link {
@@ -71,7 +71,7 @@ button:hover {
 }
 
 .back-link a {
-    color: #819FF7;
+    color: #d7d0e3;
     text-decoration: none;
     font-size: 16px;
 }
