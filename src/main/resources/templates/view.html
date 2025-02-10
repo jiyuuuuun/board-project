@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상세 글 페이지 </title>
+    <link rel="stylesheet" type="text/css" href="/css/viewstyles.css">
+</head>
+<body>
+<div class="content-container" th:object="${board}">
+    <h2 th:text="${board.name}"></h2>
+    <p class="content" th:text="${board.content}"></p>
+    <p class="created-at" th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}"></p>
+</div>
+
+<div class="links">
+    <a class="button" th:href="@{/board/list}" th:text="list"></a>
+    <a class="button" th:href="@{/board/updateform(id=${board.id})}" th:text="update"></a>
+    <a class="button" th:href="@{/board/deleteform(id=${board.id})}" th:text="delete"></a>
+</div>
+</body>
+</html>
