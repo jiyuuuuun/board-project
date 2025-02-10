@@ -31,7 +31,7 @@ public class BoardController {
     //글 목록
     @GetMapping("/list")
     public String list(@RequestParam(name="page",required = false,defaultValue ="1") int page,
-                       @RequestParam(name="size",required = false,defaultValue ="4") int size, Model model) {
+                       @RequestParam(name="size",required = false,defaultValue ="6") int size, Model model) {
         Pageable pageable = PageRequest.of(page-1,size);
         model.addAttribute("boards",boardService.findAll(pageable));
         return "list";
