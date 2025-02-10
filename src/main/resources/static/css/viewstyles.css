@@ -1,0 +1,61 @@
+/* 전체 레이아웃 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+.content-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.content {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.created-at {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* 버튼 링크 스타일 */
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button {
+    text-decoration: none;
+    background-color: #819FF7;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 16px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #819FF7;
+}
+
+.button:active {
+    background-color: #819FF7;
+}
