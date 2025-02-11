@@ -11,7 +11,24 @@
     <p class="content" th:text="${board.content}"></p>
     <p class="created-at" th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}"></p>
 </div>
-
+<div class="comment">
+    <form th:action="@{/comment/write}" th:object="${comment}" method="post">
+        <input type="hidden" th:field="*{boardId}">
+        <label th:for="content">✍🏻댓글 작성:</label>
+        <input type="text" th:id="content" th:field="*{content}"><br>
+        <label th:for="name">👤이름:</label>
+        <input type="text" th:id="name" th:field="*{author}"><br>
+        <label th:for="password">🔢비밀번호:</label>
+        <input type="text" th:id="password" th:field="*{password}">
+        <button type="submit">댓글 작성</button>
+    </form>
+</div>
+<div class="comment-show" th:if="${commentList!=null}">
+    <ul th:each="comment:${commentList}">
+        <li>👤 <span th:text="${comment.author}"></span></li>
+        <li>💬 <span th:text="${comment.content}"></span></li>
+    </ul>
+</div>
 <div class="links">
     <a class="button" th:href="@{/board/list}" th:text="list"></a>
     <a class="button" th:href="@{/board/updateform(id=${board.id})}" th:text="update"></a>

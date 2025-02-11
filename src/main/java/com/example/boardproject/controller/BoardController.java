@@ -1,7 +1,9 @@
 package com.example.boardproject.controller;
 
 import com.example.boardproject.entity.Board;
+import com.example.boardproject.entity.Comment;
 import com.example.boardproject.service.BoardService;
+import com.example.boardproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -9,11 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/board")
 public class BoardController {
     private final BoardService boardService;
+    private final CommentService commentService;
 
     //글 등록 폼
     @GetMapping("/writeform")
@@ -40,7 +45,13 @@ public class BoardController {
     //게시글 상세 조회
     @GetMapping("/view")
     public String view(@RequestParam(name="id",required = false,defaultValue = "0") Long id, Model model) {
-        model.addAttribute("board",boardService.findOne(id));
+        Board board = boardService.findOne(id);
+        model.addAttribute("board",board);
+        Comment comment=new Comment(id);
+        System.out.println(comment);
+        model.addAttribute("comment",comment);
+        List<Comment> commentList=commentService.getCommentByBoardId(id);
+        model.addAttribute("commentList",commentList);
         return "view";
     }
     //글 수정
