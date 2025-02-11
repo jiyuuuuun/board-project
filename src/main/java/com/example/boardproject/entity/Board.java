@@ -1,10 +1,7 @@
 package com.example.boardproject.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table("board")
 public class Board {
     @Id
@@ -24,8 +22,8 @@ public class Board {
     private String password;
     private String content;
     @Column("created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt= LocalDateTime.now();
     @Column("updated_at")
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedAt= LocalDateTime.now();
 
 }
