@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -56,37 +57,47 @@ public class BoardController {
     }
     //글 수정
     @GetMapping("/updateform")
-    public String update(@RequestParam(name="id",required = false,defaultValue = "0") Long id,Model model) {
+    public String update(@RequestParam(name="id",required = false,defaultValue = "0") Long id,
+                         @ModelAttribute("msg") String msg, Model model) {
+        System.out.println(boardService.findOne(id));
         model.addAttribute("board",boardService.findOne(id));
+
         return "updateform";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Board board,@RequestParam(name="password") String password){
-        if (boardService.checkpassword(board,password)){
+    public String update(@ModelAttribute Board board,@RequestParam(name="inputPassword") String inputPassword,RedirectAttributes redirectAttributes) {
+        if (boardService.checkpassword(board,inputPassword)){
             boardService.update(board);
             return "redirect:/board/list";
         }else{
-            return "redirect:/board/updateform";
+            //return "redirect:/board/updateform?msg=비밀번호가 틀립니다"; 헤더를 통해 보낼 때 인코딩 오류!
+            //세션을 사용하여 데이터를 전달하므로 URL에 직접 포함되지 않아 인코딩 문제 해결
+            redirectAttributes.addFlashAttribute("msg", "비밀번호가 틀립니다");
+            return "redirect:/board/updateform?id=" + board.getId();
+
         }
 
     }
 
     //글 삭제
     @GetMapping("/deleteform")
-    public String delete(@RequestParam(name="id",required = false,defaultValue = "0") Long id,Model model){
+    public String delete(@RequestParam(name="id",required = false,defaultValue = "0") Long id,
+                         @ModelAttribute("msg") String msg,Model model){
         model.addAttribute("board",boardService.findOne(id));
         return "/deleteform";
     }
 
     @PostMapping("/delete")
     public String delete(@ModelAttribute Board board,
-                         @RequestParam(name="password") String password){
-        if (boardService.checkpassword(board,password)){
+                         @RequestParam(name="inputPassword") String inputPassword,RedirectAttributes redirectAttributes){
+        if (boardService.checkpassword(board,inputPassword)){
             boardService.delete((long) board.getId());
             return "redirect:/board/list";
         }else{
-            return "redirect:/board/deleteform";
+            redirectAttributes.addFlashAttribute("msg", "비밀번호가 틀립니다");
+            return "redirect:/board/deleteform?id=" + board.getId();
+
         }
 
     }

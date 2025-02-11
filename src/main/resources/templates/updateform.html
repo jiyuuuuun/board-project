@@ -12,16 +12,17 @@
   <input type="hidden" th:field="*{id}">
   <label>이름:</label>
   <input type="text" th:field="*{name}" required><br>
-
   <label>제목:</label>
   <input type="text" th:field="*{title}" required><br>
-
-  <label for="password">암호:</label>
-  <input type="password" id="password" name="password"><br>
-
+  <input type="hidden" th:field="*{password}">
+  <label for="inputPassword">암호:</label>
+  <input type="password" id="inputPassword" name="inputPassword">
+  <!--객체와 일반 파라미터의 관계더라도 변수 명이 같으면 값이 겹처서 넘어감-->
+  <div th:if="${msg}" class="alert">
+    <p th:text="${msg}"></p>
+  </div><!--비밀번호가 틀리면 msg 표시-->
   <label>본문:</label>
   <textarea th:field="*{content}" rows="5" required></textarea><br>
-
   <button type="submit">등록</button>
 </form>
 </body>

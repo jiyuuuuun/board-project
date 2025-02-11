@@ -26,6 +26,7 @@ public class BoardService {
             board.setUpdatedAt(LocalDateTime.now());
         }
         boardRepository.save(board);
+        System.out.println(board);
     }
 
     //글 목록 보기 최신 글부터 보여짐, 페이징 처리, ID, 제목, 이름, 등록일(YYYY/MM/DD) 형식
@@ -55,8 +56,10 @@ public class BoardService {
             boardRepository.delete(board);
 
     }
-    public boolean checkpassword(Board board, String password) {
-        if (board.getPassword().equals(password)) {
+    public boolean checkpassword(Board board, String inputPassword) {
+        System.out.println(board.getPassword());
+        System.out.println(inputPassword);
+        if (board.getPassword().equals(inputPassword)) {
             return true;
         }else{
             return false;
