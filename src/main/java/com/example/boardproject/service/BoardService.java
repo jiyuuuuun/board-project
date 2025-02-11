@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +33,7 @@ public class BoardService {
     //글 목록 보기 최신 글부터 보여짐, 페이징 처리, ID, 제목, 이름, 등록일(YYYY/MM/DD) 형식
     @Transactional
     public Page<Board> findAll(Pageable pageable) {
-        Pageable p= PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        Pageable p= PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),Sort.by(Sort.Direction.DESC,"id"));
 
         return boardRepository.findAll(p);
     }
